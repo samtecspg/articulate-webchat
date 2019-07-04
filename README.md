@@ -235,9 +235,3 @@ For example, if you want to use a simple button to toggle the widget:
     <button onClick={handleToggle}>Toggle</button>
   )}
 ```
-
-## About
-
-This project is maintained by [Martín Callegari](https://github.com/mcallegari10) and it was written by [Wolox](http://www.wolox.com.ar).
-
-![Wolox](https://raw.githubusercontent.com/Wolox/press-kit/master/logos/logo_banner.png)
