@@ -11,8 +11,6 @@ const ConnectedWidget = props =>
       title={props.title}
       titleAvatar={props.titleAvatar}
       subtitle={props.subtitle}
-      handleNewUserMessage={props.handleNewUserMessage}
-      handleQuickButtonClicked={props.handleQuickButtonClicked}
       senderPlaceHolder={props.senderPlaceHolder}
       profileAvatar={props.profileAvatar}
       showCloseButton={props.showCloseButton}
@@ -20,6 +18,9 @@ const ConnectedWidget = props =>
       badge={props.badge}
       autofocus={props.autofocus}
       customLauncher={props.launcher}
+      socketUrl={props.socketUrl}
+      socketPath={props.socketPath}
+      converseUrl={props.converseUrl}
     />
   </Provider>;
 
@@ -27,15 +28,16 @@ ConnectedWidget.propTypes = {
   title: PropTypes.string,
   titleAvatar: PropTypes.string,
   subtitle: PropTypes.string,
-  handleNewUserMessage: PropTypes.func.isRequired,
-  handleQuickButtonClicked: PropTypes.func,
   senderPlaceHolder: PropTypes.string,
   profileAvatar: PropTypes.string,
   showCloseButton: PropTypes.bool,
   fullScreenMode: PropTypes.bool,
   badge: PropTypes.number,
   autofocus: PropTypes.bool,
-  launcher: PropTypes.func
+  launcher: PropTypes.func,
+  socketUrl: PropTypes.string,
+  socketPath: PropTypes.string,
+  converseUrl: PropTypes.string,
 };
 
 ConnectedWidget.defaultProps = {

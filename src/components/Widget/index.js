@@ -1,12 +1,51 @@
 import React, { Component } from 'react';
+import { compose } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import Nes from 'nes';
 
-import { toggleChat, addUserMessage } from '@actions';
+import { toggleChat, addUserMessage, addResponseMessage, toggleMsgLoader } from '@actions';
 
 import WidgetLayout from './layout';
 
 class Widget extends Component {
+
+  state = {
+    client: null,
+    socketClientConnected: false,
+    waitingForMessage: false,
+  };
+
+  componentWillMount(){
+    if (!this.state.socketClientConnected) {
+      const client = new Nes.Client(this.props.socketUrl);
+      client.onConnect = () => {
+        this.setState({
+          client,
+          socketClientConnected: true,
+        });
+
+        const handler = response => {
+          if (response) {
+            if (this.state.waitingForMessage){
+              this.setState({
+                waitingForMessage: false
+              });
+              this.props.dispatch(toggleMsgLoader());              
+            }
+            this.props.dispatch(addResponseMessage(response.textResponse));
+          }
+        };
+
+        client.subscribe(
+          this.props.socketPath,
+          handler,
+        );
+      };
+      client.connect();
+    }
+  }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.fullScreenMode) {
       this.props.dispatch(toggleChat());
@@ -21,18 +60,22 @@ class Widget extends Component {
     event.preventDefault();
     const userInput = event.target.message.value;
     if (userInput.trim()) {
-      this.props.dispatch(addUserMessage(userInput));
-      this.props.handleNewUserMessage(userInput);
+      this.getResponseFromMessage(userInput);
     }
     event.target.message.value = '';
   }
 
   handleQuickButtonClicked = (event, value) => {
     event.preventDefault();
+    this.getResponseFromMessage(value);
+  }
 
-    if(this.props.handleQuickButtonClicked) {
-      this.props.handleQuickButtonClicked(value);
-    }
+  getResponseFromMessage = (text) => {
+    this.props.dispatch(addUserMessage(text, this.props.converseUrl));
+    this.setState({
+      waitingForMessage: true
+    });
+    this.props.dispatch(toggleMsgLoader());
   }
 
   render() {
@@ -60,15 +103,20 @@ Widget.propTypes = {
   title: PropTypes.string,
   titleAvatar: PropTypes.string,
   subtitle: PropTypes.string,
-  handleNewUserMessage: PropTypes.func.isRequired,
-  handleQuickButtonClicked: PropTypes.func.isRequired,
   senderPlaceHolder: PropTypes.string,
   profileAvatar: PropTypes.string,
   showCloseButton: PropTypes.bool,
   fullScreenMode: PropTypes.bool,
   badge: PropTypes.number,
   autofocus: PropTypes.bool,
-  customLauncher: PropTypes.func
+  customLauncher: PropTypes.func,
+  socketUrl: PropTypes.string,
+  socketPath: PropTypes.string,
+  converseUrl: PropTypes.string,
 };
 
-export default connect()(Widget);
+const withConnect = connect();
+
+export default compose(
+  withConnect
+)(Widget);

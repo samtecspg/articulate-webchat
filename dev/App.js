@@ -1,37 +1,19 @@
 import React, { Component } from 'react';
-import { Widget, addResponseMessage, setQuickButtons, toggleMsgLoader } from '../index';
+import { Widget } from '../index_for_react_app';
 
 export default class App extends Component {
-  componentDidMount() {
-    addResponseMessage('Welcome to this awesome chat!');
-  }
-
-  handleNewUserMessage = (newMessage) => {    
-    toggleMsgLoader();
-    setTimeout(() => {
-      toggleMsgLoader();      
-      if (newMessage === 'fruits') {
-        setQuickButtons([ { label: 'Apple', value: 'apple' }, { label: 'Orange', value: 'orange' }, { label: 'Pear', value: 'pear' }, { label: 'Banana', value: 'banana' } ]);
-      } else {
-        addResponseMessage(newMessage);
-      }
-    }, 2000);
-  }
-
-  handleQuickButtonClicked = (e) => {
-    addResponseMessage('Selected ' + e);
-    setQuickButtons([]);
-  }
 
   render() {
     return (
       <Widget
-        title="Bienvenido"
-        subtitle="Asistente virtual"
-        senderPlaceHolder="Escribe aquí ..."
-        handleNewUserMessage={this.handleNewUserMessage}
-        handleQuickButtonClicked={this.handleQuickButtonClicked}
-        badge={1}
+        socketUrl='<ws://YOUR ARTICULATE SERVER URL:7500>'
+        socketPath='/agent/<YOUR AGENT ID>/converse'
+        converseUrl='<http://YOUR ARTICULATE SERVER URL:7500>/agent/<YOUR AGENT ID>/converse'
+        title='Pizza Bot'
+        subtitle='Let me prepare your pizza'
+        senderPlaceHolder='Type a message...'
+        titleAvatar='https://static.thenounproject.com/png/815603-200.png'
+        profileAvatar='https://static.thenounproject.com/png/815603-200.png'
       />
     );
   }

@@ -1,27 +1,26 @@
-import ConnectedWidget from './src';
-import {
-  addUserMessage,
-  addResponseMessage,
-  addLinkSnippet,
-  renderCustomComponent,
-  toggleWidget,
-  toggleInputDisabled,
-  toggleMsgLoader,
-  dropMessages,
-  isWidgetOpened,
-  setQuickButtons
-} from './src/store/dispatcher';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Widget } from './index_for_react_app';
+
+const plugin = {
+  init: (args) => {
+    ReactDOM.render(
+      <Widget
+        socketUrl={args.socketUrl}
+        socketPath={args.socketPath}
+        converseUrl={args.converseUrl}
+        title={args.title}
+        subtitle={args.subtitle}
+        senderPlaceHolder={args.senderPlaceHolder}
+        titleAvatar={args.titleAvatar}
+        profileAvatar={args.profileAvatar}
+      />, document.querySelector(args.selector)
+    );
+  }
+};
 
 export {
-  ConnectedWidget as Widget,
-  addUserMessage,
-  addResponseMessage,
-  addLinkSnippet,
-  renderCustomComponent,
-  toggleWidget,
-  toggleInputDisabled,
-  toggleMsgLoader,
-  dropMessages,
-  isWidgetOpened,
-  setQuickButtons
+  plugin as default,
+  Widget,
 };
+

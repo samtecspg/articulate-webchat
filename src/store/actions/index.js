@@ -12,10 +12,11 @@ export function toggleInputDisabled() {
   };
 }
 
-export function addUserMessage(text) {
+export function addUserMessage(text, converseUrl) {
   return {
     type: actions.ADD_NEW_USER_MESSAGE,
-    text
+    text,
+    converseUrl
   };
 }
 

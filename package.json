@@ -19,15 +19,19 @@
     "javascript"
   ],
   "dependencies": {
+    "axios": "^0.19.0",
+    "guid": "^0.0.12",
     "immutable": "^3.8.1",
     "markdown-it": "^8.4.1",
     "markdown-it-link-attributes": "^2.1.0",
     "markdown-it-sanitizer": "^0.4.3",
     "markdown-it-sup": "^1.0.0",
+    "nes": "^10.0.2",
     "prop-types": "^15.5.10",
     "react-immutable-proptypes": "^2.1.0",
     "react-redux": "^5.0.6",
-    "redux": "^3.7.2"
+    "redux": "^3.7.2",
+    "redux-saga": "^1.0.4"
   },
   "devDependencies": {
     "autoprefixer": "^8.2.0",
@@ -70,8 +74,8 @@
     "style-loader": "^0.18.2",
     "uglifyjs-webpack-plugin": "^1.2.7",
     "url-loader": "^0.5.9",
-    "webpack": "^4.4.1",
-    "webpack-cli": "^2.0.13",
+    "webpack": "^4.35.2",
+    "webpack-cli": "^3.3.5",
     "webpack-dev-server": "^3.1.4"
   },
   "peerDependencies": {
