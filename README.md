@@ -7,7 +7,39 @@
 
 ![demonstration](./assets/chat-demonstration.gif)
 
-## Usage
+## Usage as Lib
+
+1- Check this snippet to know how to import the widget in your website
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, shrink-to-fit=no">
+    <title>Dev Widget</title>
+    <link href="https://storage.cloud.google.com/articulate-webchat/articulate-webchat-0.0.1.css" rel="stylesheet" type="text/css">
+    <script src="https://storage.cloud.google.com/articulate-webchat/articulate-webchat-0.0.1.js"></script>
+  </head>
+  <body>
+    <div id="webchat"/>
+    <script>
+      WebChat.default.init({
+        selector: '#webchat',
+        socketUrl: '<ws://YOUR ARTICULATE SERVER URL:7500>',
+        socketPath: '/agent/<YOUR AGENT ID>/converse',
+        converseUrl: '<http://YOUR ARTICULATE SERVER URL:7500>/agent/<YOUR AGENT ID>/converse',
+        title: 'Pizza Bot',
+        subtitle: 'Let me prepare your pizza',
+        senderPlaceHolder: 'Type a message...',
+        titleAvatar: 'https://static.thenounproject.com/png/815603-200.png',
+        profileAvatar: 'https://static.thenounproject.com/png/815603-200.png'
+      });
+    </script>
+  </body>
+</html>
+```
+## Usage as React Component
 
 1- Add the Widget component to your root component
 
@@ -134,7 +166,6 @@ export default App;
 
 |   |type|required|default value|description|
 |---|--- |---     |---          |---        |
-|**handleNewUserMessage**|PropTypes.func|YES| |Function to handle the user input, will receive the full text message when submitted|
 |**title**|PropTypes.string|NO|'Welcome'|Title of the widget|
 |**subtitle**|PropTypes.string|NO|'This is your chat subtitle'|Subtitle of the widget|
 |**senderPlaceHolder**|PropTypes.string|NO|'Type a message...'|The placeholder of the message input|
@@ -145,7 +176,6 @@ export default App;
 |**badge**|PropTypes.number|NO|0|Display a notification badge on the launcher if the value is greater than 0|
 |**autofocus**|PropTypes.bool|NO|true|Autofocus or not the user input|
 |**launcher**|PropTypes.func|NO||Custom Launcher component to use instead of the default|
-|**handleQuickButtonClicked**|PropTypes.func|NO||Function to handle the user clicking a quick button, will receive the 'value' when clicked.|
 
 #### Styles
 
