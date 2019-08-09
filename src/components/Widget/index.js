@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Nes from 'nes';
 
-import { toggleChat, addUserMessage, addResponseMessage, toggleMsgLoader } from '@actions';
+import { toggleChat, addUserMessage, addResponseMessage, toggleMsgLoader, setQuickButtons } from '@actions';
 
 import WidgetLayout from './layout';
 
@@ -34,6 +34,14 @@ class Widget extends Component {
               this.props.dispatch(toggleMsgLoader());              
             }
             this.props.dispatch(addResponseMessage(response.textResponse));
+            if (response.quickResponses) {
+              this.props.dispatch(setQuickButtons(response.quickResponses.map((quickResponse) => {
+                return {
+                  value: quickResponse,
+                  label: quickResponse
+                }
+              })));
+            }
           }
         };
 
