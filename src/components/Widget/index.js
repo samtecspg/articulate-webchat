@@ -76,6 +76,7 @@ class Widget extends Component {
   handleQuickButtonClicked = (event, value) => {
     event.preventDefault();
     this.getResponseFromMessage(value);
+    this.props.dispatch(setQuickButtons([]));
   }
 
   getResponseFromMessage = (text) => {
