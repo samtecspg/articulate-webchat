@@ -15,7 +15,7 @@ export function* postConverse(payload) {
   else {
     const newSessionId = Guid.create().toString();
     sessionId = newSessionId;
-    localStorage.setItem('newSessionId', newSessionId);
+    localStorage.setItem('sessionId', newSessionId);
   }
   try {
     const postPayload = {
