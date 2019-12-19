@@ -1,3 +1,7 @@
+## Credits
+
+This is a fork from [Wolox's react-chat-widget Repo](https://github.com/Wolox/react-chat-widget). We adapted it to make it compatible with [Articulate](https://github.com/samtecspg/articulate).
+
 ## Features
 
 - Plain text message UI
