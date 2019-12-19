@@ -18,7 +18,7 @@ class Widget extends Component {
 
   componentWillMount(){
     if (!this.state.socketClientConnected) {
-      const client = new Nes.Client(this.props.socketUrl);
+      const client = new Nes.Client(this.props.socketUrl, { timeout: 30000 });
       client.onConnect = () => {
         this.setState({
           client,
