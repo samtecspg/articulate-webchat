@@ -22,8 +22,8 @@ This is a fork from [Wolox's react-chat-widget Repo](https://github.com/Wolox/re
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, shrink-to-fit=no">
     <title>Dev Widget</title>
-    <link href="https://storage.cloud.google.com/articulate-webchat/articulate-webchat-0.0.1.css" rel="stylesheet" type="text/css">
-    <script src="https://storage.cloud.google.com/articulate-webchat/articulate-webchat-0.0.1.js"></script>
+    <link href="https://cdn.jsdelivr.net/gh/samtecspg/articulate-webchat@0.0.3/lib/articulate-webchat.css" rel="stylesheet" type="text/css">
+    <script src="https://cdn.jsdelivr.net/gh/samtecspg/articulate-webchat@0.0.3/lib/articulate-webchat.js"></script>
   </head>
   <body>
     <div id="webchat"/>
